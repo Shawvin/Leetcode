@@ -14,7 +14,7 @@ def isValid(s):
                     return False
             else:
                 return False
-    return True
+    return len(char_stack)==0
 
 if __name__=='__main__':
     s="()[]{}"
