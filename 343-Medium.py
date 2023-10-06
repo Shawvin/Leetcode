@@ -7,9 +7,12 @@ def integerBreak(n):
     result=[0]*(n+1)
     result[0]=1
     result[1]=1
+    result[2]=1
+    if n>2:
+        result[3]=2
     for i in range(2,n+1):
         local_max=result[i-1]
-        for j in range(2,i):
+        for j in range(2,i//2+1):
             temp=max(j, result[j])*max(i-j, result[i-j])
             if temp>local_max:
                 local_max=temp
