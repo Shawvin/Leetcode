@@ -17,7 +17,15 @@ def upperrow(k):
         k=(k+1)//2
         return upperrow(k)
     
+def kthGrammar2(n, k):
+    if k==1:
+        return 0
+    if k%2==0:
+        return 1-kthGrammar2(n-1,(k+1)//2)
+    else:
+        return kthGrammar2(n-1,(k+1)//2)
+    
 if __name__=='__main__':
     n=2
     k=1
-    print(kthGrammar(n,k))
+    print(kthGrammar2(n,k))
