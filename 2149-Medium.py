@@ -7,6 +7,7 @@
 ## The rearranged array begins with a positive integer.
 ## Return the modified array after rearranging the elements to satisfy the aforementioned conditions.
 
+## two subarray
 def rearrangeArray(nums):
     nums_p=[]
     nums_n=[]
@@ -21,6 +22,20 @@ def rearrangeArray(nums):
         else:
             nums[i]=nums_n[(i-1)//2]
     return nums
+
+## two pointer
+def rearrangeArray2(nums):
+    n=len(nums)
+    po,ne=0,1
+    result=[0]*n
+    for i in range(n):
+        if nums[i]>0:
+            result[po]=nums[i]
+            po+=2
+        else:
+            result[ne]=nums[i]
+            ne+=2
+    return result
 
 if __name__=='__main__':
     nums = [3,1,-2,-5,2,-4]
