@@ -6,38 +6,27 @@ class ListNode:
          self.val = x
          self.next = None
 
-def hasCycle(head):
+def detectCycle(head):
     if not head:
-        return False
-    hare=head.next
-    if hare:
-        hare=hare.next
-    tortoise=head.next
-    while hare:
-        if tortoise==hare:
-            return True
-        tortoise=tortoise.next
-        hare=hare.next
-        if hare:
-            hare=hare.next
-    return False
-
-def hasCycle2(head):
-    if not head:
-        return False
+        return 
     second=head.next
     if not second:
-        return False
+        return 
     first=second.next
     while first:
         if first==second:
-            return True
+            second=head
+            while first!=second:
+                first=first.next
+                second=second.next
+            return second
         else:
-            if not first.next:
-                return False
-            first=first.next.next
             second=second.next
-    return False
+            if not first.next:
+                return 
+            first=first.next.next
+    return
+    
 
 if __name__=='__main__':
     head=[3,2,0,-4]
@@ -55,4 +44,4 @@ if __name__=='__main__':
         for i in range(pos):
             pre=pre.next
         end.next=pre
-    print(hasCycle(head))
+    print(detectCycle(head))
