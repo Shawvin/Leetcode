@@ -50,6 +50,36 @@ def reorderList(head):
             second, second2=second2, second2.next
         else:
             second=second2
+            
+def reorderList2(head):
+    tortoise=head
+    hare=head.next
+    if hare:
+        hare=hare.next
+    while hare:
+        hare=hare.next
+        if hare:
+            hare=hare.next
+        tortoise=tortoise.next
+    first=head
+    pre=None
+    cur=tortoise
+    while cur:
+        nxt=cur.next
+        cur.next=pre
+        pre=cur
+        cur=nxt
+    second=pre
+    while first:
+        firstNxt=first.next
+        first.next=second
+        if second:
+            secondNxt=second.next
+            second.next=firstNxt
+        first=firstNxt
+        second=secondNxt
+    return head
+
 
 if __name__=='__main__':
     head=[1,2,3,4,5]
