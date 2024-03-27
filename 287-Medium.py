@@ -16,6 +16,16 @@ def findDuplicate(nums):
         if nums[j]!=j+1:
             return nums[j]
         
+def findDuplicate2(nums):
+    i=0
+    while i<len(nums):
+        if nums[nums[i]-1]!=nums[i] and nums[i]-1!=i:
+            nums[nums[i]-1],nums[i]=nums[i],nums[nums[i]-1]
+        elif nums[i]-1==i:
+            i+=1
+        else:
+            return nums[i]
+        
 if __name__=='__main__':
     nums=[1,3,4,2,2]
     print(findDuplicate(nums))
