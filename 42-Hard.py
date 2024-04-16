@@ -3,6 +3,22 @@
 ## Given n non-negative integers representing an elevation map where the width of each bar is 1, 
 ## compute how much water it can trap after raining.
 
+def trap4(height):
+    n=len(height)
+    rmax=[0]*n
+    cur_rmax=0
+    for i in range(n-2,-1,-1):
+        cur_rmax=max(height[i+1],cur_rmax)
+        rmax[i]=cur_rmax
+    cur_lmax=0
+    total=0
+    for i in range(1,n):
+        cur_lmax=max(cur_lmax, height[i-1])
+        min_max=min(cur_lmax, rmax[i])
+        if height[i]<min_max:
+            total+=(min_max-height[i])
+    return total
+
 def trap(height):
     l=len(height)
     if l<3:

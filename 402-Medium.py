@@ -3,21 +3,29 @@
 ## Given string num representing a non-negative integer num, and an integer k, return the smallest possible integer after removing k digits from num.
 
 def removeKdigits(num, k):
-    if len(num)==k:
+    if k==len(num):
         return '0'
-    cur=[]
-    for i in range(len(num)):
-        cur.append(num[:i+1])
-    pre=cur.copy()
-    for i in range(1,k+1):
-        cur[i-1]=''
-        for j in range(i,len(num)):
-            cur[j]=min(pre[j-1],cur[j-1]+num[j])
-        cur,pre=pre,cur
-    if len(pre[-1].lstrip('0'))>0:
-        return pre[-1].lstrip('0')
-    else:
-        return '0'
+    res=[]
+    count=0
+    flag=False
+    for i, char in enumerate(num):
+        if len(res)>0 and char<res[-1]:
+            while len(res)>0 and res[-1]>char:
+                res.pop()
+                count+=1
+                if count==k:
+                    flag=True
+                    break
+        if flag:
+            res+=num[i:]
+            break
+        else:
+            res.append(char)
+    while count<k:
+        res.pop()
+        count+=1
+    res=''.join(res).lstrip("0")
+    return res if len(res)>0 else '0'
     
 def removeKdigits2(num, k):
     n=len(num)
