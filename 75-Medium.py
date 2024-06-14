@@ -37,7 +37,18 @@ def sortColors3(nums):
             k-=1
     return nums
 
-
+# list comprehension
+def sortColors4(nums):
+    res=[0,0,0]
+    for num in nums:
+        res[num]+=1
+    count=0
+    for i in range(3):
+        for j in range(res[i]):
+            nums[count]=i
+            count+=1
+    return nums
+          
 if __name__=='__main__':
-    nums=[2,0,2,1,1,0]
-    print(sortColors3(nums))
+    nums=[1,2,2]
+    print(sortColors4(nums))
