@@ -15,6 +15,30 @@ def lengthOfLIS(nums):
     print(dp)
     return max_len
 
+def lengthOfLIS2(nums):
+    res=[]
+    for num in nums:
+        if len(res)<1 or res[-1]<num:
+            res.append(num)
+        else:
+            found=False
+            i=0
+            j=len(res)-1
+            while i<=j:
+                mid=(i+j)//2
+                if res[mid]>num:
+                    j=mid-1
+                elif res[mid]<num:
+                    i=mid+1
+                else:
+                    found=True
+                    break
+            if found:
+                res[mid]=num
+            else:
+                res[i]=num
+    return len(res)
+
 if __name__=='__main__':
     nums = [10,9,2,5,3,7,101,18]
-    print(lengthOfLIS(nums))
+    print(lengthOfLIS2(nums))
